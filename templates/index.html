@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ToDo</title>
+    <!-- B O O T S T R A P -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/minty/bootstrap.min.css"
+    />
+    <!-- M A I N . C S S -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='main.css') }}"
+    />
+    <!-- F U E N T E -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lobster&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <main class="container p-4">
+      <h1 class="display-4 text-center mt-4">ToDo App</h1>
+      <div class="row">
+        <div class="col-md-4 offset-md-4 my-auto">
+          <div class="card">
+            <div class="card-header">
+              <form action="/create-task" method="POST">
+                <div class="form-group">
+                  <input
+                    type="text"
+                    name="content"
+                    placeholder="Task"
+                    class="form-control"
+                    autofocus
+                  />
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">
+                  Save
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
