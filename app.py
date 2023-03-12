@@ -1,36 +1,19 @@
-from flask import Flask, request, render_template
+from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
-# Instanciamos una base de datos
+# create the extension
 db = SQLAlchemy()
-
+# create the app
 app = Flask(__name__)
-
-# Indicamos cómo conectarse a la base de datos real
-app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///database\\tasks.db"
-
-# Inicializamos la base de datos
+# configure the SQLite database, relative to the app instance folder
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///database/tasks.db"
+# initialize the app with the extension
 db.init_app(app)
 
-# Creamos un modelo que será nuestra tabla
-class Task(db.Model):
+class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    content = db.Column(db.String(200))
-    done = db.Column(db.Boolean)
+    username = db.Column(db.String, unique=True, nullable=False)
+    email = db.Column(db.String)
 
-
-with app.app_context():
-    db.create_all()
-
-
-# R U T A S
-
-@app.route("/")
-def home():
-    return render_template('index.html')
-
-@app.route("/create-task", methods=['POST'])
-def create():
-    task = Task(content=request.form['content'], done = False)
-    #db.session.add() # Para usar esto tenemos que tener la tabla creada
-
+# with app.app_context():
+#     db.create_all()
