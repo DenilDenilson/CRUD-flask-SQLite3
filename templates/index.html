@@ -30,6 +30,7 @@
         <div class="col-md-4 offset-md-4 my-auto">
           <div class="card">
             <div class="card-header">
+              <!-- F O R M -->
               <form action="/create-task" method="POST">
                 <div class="form-group">
                   <input
@@ -44,6 +45,23 @@
                   Save
                 </button>
               </form>
+            </div>
+            <div class="card-body">
+              <ul class="list-group">
+                {% for task in tasks %}
+                <li class="list-group-item">
+                  <span class="{{ 'done' if task.done else '' }}">
+                    {{task.content}}
+                  </span>
+                  <a href="/done/{{task.id}}" class="btn btn-success btn-sm"
+                    >Done</a
+                  >
+                  <a href="/delete/{{task.id}}" class="btn btn-danger btn-sm"
+                    >Delete</a
+                  >
+                </li>
+                {% endfor %}
+              </ul>
             </div>
           </div>
         </div>
